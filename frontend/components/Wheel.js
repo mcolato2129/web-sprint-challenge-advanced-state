@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 function Wheel(props) {
 
-  const { initialWheelState, wheel } = props;
+  const { wheel, letter } = props;
 
   console.log(props)
 
@@ -21,7 +21,7 @@ function Wheel(props) {
       <div id="wheel">
         {ids.map(id => {
           if (id === 0) {
-            return (<div key={id} className='cog active' style={{ "--i": id }}></div>)
+            return (<div key={id} className='cog active' style={{ "--i": id }}>{letter}</div>)
           }
           return (
             <div key={id} className='cog' style={{ "--i": id }}></div>
@@ -45,7 +45,7 @@ function Wheel(props) {
 const mapStateToProps = (state) => {
   return {
     wheel: state.wheelReducer.wheelState,
-    letter: state.wheelReducer.letter
+    letter: state.wheelReducer.wheelLetter
   }
 }
 
