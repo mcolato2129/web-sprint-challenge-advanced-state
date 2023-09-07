@@ -1,18 +1,17 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import { moveClockwise } from "../state/action-creators";
 import { connect } from 'react-redux';
 
 
 
 function Wheel(props) {
-
+  const [currentIndex, setIndex] = useState(0);
   const { wheel, letter } = props;
 
   console.log(props)
 
   const handleClick = () => {
-
-    moveClockwise();
+    setIndex(prevIndex => (prevIndex + 1) % ids.length);
   }
 
   const ids = [0, 1, 2, 3, 4, 5]
@@ -20,7 +19,7 @@ function Wheel(props) {
     <div id="wrapper">
       <div id="wheel">
         {ids.map(id => {
-          if (id === 0) {
+          if (id === currentIndex) {
             return (<div key={id} className='cog active' style={{ "--i": id }}>{letter}</div>)
           }
           return (
