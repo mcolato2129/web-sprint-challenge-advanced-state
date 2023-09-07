@@ -22,9 +22,11 @@ function selectedAnswer(state = initialSelectedAnswerState, action) {
   return state
 }
 
-const initialMessageState = ''
+const initialMessageState = {
+  message:''
+}
 function infoMessage(state = initialMessageState, action) {
-  return state
+  return {state: initialMessageState.message};
 }
 
 const initialFormState = {

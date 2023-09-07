@@ -6,12 +6,16 @@ import { connect } from 'react-redux';
 
 function Wheel(props) {
   const [currentIndex, setIndex] = useState(0);
-  const { wheel, letter } = props;
+  const { letter } = props;
 
   console.log(props)
 
-  const handleClick = () => {
+  const clockWise = () => {
     setIndex(prevIndex => (prevIndex + 1) % ids.length);
+  }
+
+  const counterClockWise = () => {
+    setIndex(prevIndex => (prevIndex - 1 + ids.length) % ids.length);
   }
 
   const ids = [0, 1, 2, 3, 4, 5]
@@ -34,8 +38,8 @@ function Wheel(props) {
         <div className="cog" style={{ "--i": 5 }}></div>--i is a custom CSS property, no need to touch that nor the style object */}
       </div>
       <div id="keypad">
-        <button id="counterClockwiseBtn">Counter clockwise</button>
-        <button id="clockwiseBtn" onClick={handleClick}>Clockwise</button>
+        <button id="counterClockwiseBtn" onClick={counterClockWise}>Counter clockwise</button>
+        <button id="clockwiseBtn" onClick={clockWise}>Clockwise</button>
       </div>
     </div>
   )
@@ -43,7 +47,6 @@ function Wheel(props) {
 
 const mapStateToProps = (state) => {
   return {
-    wheel: state.wheelReducer.wheelState,
     letter: state.wheelReducer.wheelLetter
   }
 }
