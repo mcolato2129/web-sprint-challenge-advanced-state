@@ -4,11 +4,13 @@ import { MOVE_COUNTERCLOCKWISE } from "./action-types";
 
 
 
-export function moveClockwise(id) {
-  return{type:MOVE_CLOCKWISE}
+export function moveClockwise(ids, wheelIndex) {
+  return{type: MOVE_CLOCKWISE, payload: {ids, wheelIndex}}
 }
 
-export function moveCounterClockwise() { }
+export function moveCounterClockwise(ids, wheelIndex) {
+  return{type: MOVE_COUNTERCLOCKWISE, payload: {ids, wheelIndex}}
+}
 
 export function selectAnswer() { }
 

@@ -1,21 +1,21 @@
-import React, { useReducer, useState } from 'react';
-import { moveClockwise } from "../state/action-creators";
+import React from 'react';
+import { moveClockwise, moveCounterClockwise } from "../state/action-creators";
 import { connect } from 'react-redux';
 
 
 
 function Wheel(props) {
-  const [currentIndex, setIndex] = useState(0);
-  const { letter } = props;
+  
+  const { wheelIndex,letter } = props;
 
   console.log(props)
 
   const clockWise = () => {
-    setIndex(prevIndex => (prevIndex + 1) % ids.length);
+   props.moveClockwise(ids, wheelIndex);
   }
 
   const counterClockWise = () => {
-    setIndex(prevIndex => (prevIndex - 1 + ids.length) % ids.length);
+    props.moveCounterClockwise(ids, wheelIndex);
   }
 
   const ids = [0, 1, 2, 3, 4, 5]
@@ -23,7 +23,7 @@ function Wheel(props) {
     <div id="wrapper">
       <div id="wheel">
         {ids.map(id => {
-          if (id === currentIndex) {
+          if (id === wheelIndex) {
             return (<div key={id} className='cog active' style={{ "--i": id }}>{letter}</div>)
           }
           return (
@@ -47,8 +47,9 @@ function Wheel(props) {
 
 const mapStateToProps = (state) => {
   return {
-    letter: state.wheelReducer.wheelLetter
+    letter: state.wheelReducer.wheelLetter,
+    wheelIndex: state.wheelReducer.wheelIndex
   }
 }
 
-export default connect(mapStateToProps, { moveClockwise })(Wheel);
+export default connect(mapStateToProps, { moveClockwise, moveCounterClockwise})(Wheel);

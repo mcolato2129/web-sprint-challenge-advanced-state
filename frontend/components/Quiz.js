@@ -1,6 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux';
 
 export default function Quiz(props) {
+  
+
+  const handleClick = () => {
+    
+  }
+
   return (
     <div id="wrapper">
       {
