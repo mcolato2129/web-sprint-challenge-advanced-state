@@ -1,7 +1,8 @@
 // ❗ You don't need to add extra reducers to achieve MVP
 import {
   MOVE_CLOCKWISE,
-  MOVE_COUNTERCLOCKWISE
+  MOVE_COUNTERCLOCKWISE,
+  SET_SELECTED_ANSWER
 } from './action-types';
 
 
@@ -35,12 +36,28 @@ const initialQuizState = {
   button: null
 }
 function quiz(state = initialQuizState, action) {
-  return { button: initialQuizState.button }
+  switch(action.type){
+    case SET_SELECTED_ANSWER:
+      return{
+        ...state,
+        selectedButton: action.payload.selectedButton
+      }
+      default:
+        return state
+  }
 }
 
 const initialSelectedAnswerState = null
 function selectedAnswer(state = initialSelectedAnswerState, action) {
-  return state
+  switch(action.type){
+    case SET_SELECTED_ANSWER:
+      return{
+        ...state,
+        initialSelectedAnswerState: state
+      }
+    default:
+      return state
+  }
 }
 
 const initialMessageState = {

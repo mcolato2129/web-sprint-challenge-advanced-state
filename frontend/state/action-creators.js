@@ -1,6 +1,7 @@
 // ❗ You don't need to add extra action creators to achieve MVP
 import { MOVE_CLOCKWISE } from "./action-types"
 import { MOVE_COUNTERCLOCKWISE } from "./action-types";
+import { SET_SELECTED_ANSWER } from "./action-types";
 
 
 
@@ -12,7 +13,9 @@ export function moveCounterClockwise(ids, wheelIndex) {
   return{type: MOVE_COUNTERCLOCKWISE, payload: {ids, wheelIndex}}
 }
 
-export function selectAnswer() { }
+export function selectAnswer(selectedButton) {
+  return{type: SET_SELECTED_ANSWER, payload:{selectedButton}}
+}
 
 export function setMessage() { }
 

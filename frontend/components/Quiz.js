@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { selectAnswer } from "../state/action-creators";
 
-export default function Quiz(props) {
-  
+function Quiz(props) {
+  const { selectedAnswer, selectAnswer} = props
 
-  const handleClick = () => {
-    
+  const handleClick = (answer) => {
+    selectAnswer(answer)
   }
 
   return (
@@ -17,17 +18,17 @@ export default function Quiz(props) {
             <h2>What is a closure?</h2>
 
             <div id="quizAnswers">
-              <div className="answer selected">
+              <div className={`answer ${selectedAnswer === 'A' ? 'selected' : ''}`}>
                 A function
-                <button>
-                  SELECTED
+                <button onClick={() => handleClick('A')}>
+                {selectedAnswer === 'A' ? 'SELECTED' : 'Select'}
                 </button>
               </div>
 
-              <div className="answer">
+              <div className={`answer ${selectedAnswer === 'B' ? 'selected' : ''}`}>
                 An elephant
-                <button>
-                  Select
+                <button onClick={() => handleClick('B')}>
+                {selectedAnswer === 'B' ? 'SELECTED' : 'Select'}
                 </button>
               </div>
             </div>
@@ -39,3 +40,11 @@ export default function Quiz(props) {
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return{
+    selectedAnswer: state.quiz.selectedButton
+  }
+}
+
+export default connect(mapStateToProps, { selectAnswer })(Quiz);
