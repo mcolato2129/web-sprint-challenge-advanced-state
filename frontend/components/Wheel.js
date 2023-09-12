@@ -8,14 +8,15 @@ function Wheel(props) {
   
   const { wheelIndex,letter } = props;
 
+
   console.log(props)
 
   const clockWise = () => {
-   props.moveClockwise(ids, wheelIndex);
+   props.moveClockwise();
   }
 
   const counterClockWise = () => {
-    props.moveCounterClockwise(ids, wheelIndex);
+    props.moveCounterClockwise();
   }
 
   const ids = [0, 1, 2, 3, 4, 5]
@@ -47,8 +48,8 @@ function Wheel(props) {
 
 const mapStateToProps = (state) => {
   return {
-    letter: state.wheelReducer.wheelLetter,
-    wheelIndex: state.wheelReducer.wheelIndex
+    letter: state.wheel.wheelLetter,
+    wheelIndex: state.wheel.wheelIndex
   }
 }
 

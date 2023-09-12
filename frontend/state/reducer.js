@@ -8,24 +8,20 @@ import {
 
 import { combineReducers } from 'redux'
 
-const initialWheelState = {
-  wheelIndex: 0,
-  wheelLetter: 'B'
-}
-const wheelReducer = (state = initialWheelState, action) => {
-  const { ids, wheelIndex } = action.payload || {};
+const initialWheelState = 0;
+const wheel= (state = initialWheelState, action) => {
 
   switch (action.type) {
     case MOVE_CLOCKWISE:
       return {
         ...state,
-        wheelIndex: (wheelIndex + 1)  % (ids ? ids.length : 0), 
+        wheelIndex: (state.wheelIndex + 1)  % (ids ? ids.length : 0), 
       };
 
     case MOVE_COUNTERCLOCKWISE:
       return {
         ...state,
-        wheelIndex: (wheelIndex - 1 + (ids ? ids.length : 0)) % (ids ? ids.length : 0)
+        wheelIndex: (state.wheelIndex - 1 + (ids ? ids.length : 0)) % (ids ? ids.length : 0)
       }
     default:
       return state;
@@ -76,4 +72,4 @@ function form(state = initialFormState, action) {
   return state
 }
 
-export default combineReducers({ wheelReducer, quiz, selectedAnswer, infoMessage, form })
+export default combineReducers({ wheel, quiz, selectedAnswer, infoMessage, form })

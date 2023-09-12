@@ -2,15 +2,16 @@
 import { MOVE_CLOCKWISE } from "./action-types"
 import { MOVE_COUNTERCLOCKWISE } from "./action-types";
 import { SET_SELECTED_ANSWER } from "./action-types";
+import axios from "axios"; 
 
 
 
-export function moveClockwise(ids, wheelIndex) {
-  return{type: MOVE_CLOCKWISE, payload: {ids, wheelIndex}}
+export function moveClockwise() {
+  return{type: MOVE_CLOCKWISE}
 }
 
-export function moveCounterClockwise(ids, wheelIndex) {
-  return{type: MOVE_COUNTERCLOCKWISE, payload: {ids, wheelIndex}}
+export function moveCounterClockwise() {
+  return{type: MOVE_COUNTERCLOCKWISE}
 }
 
 export function selectAnswer(selectedButton) {
@@ -36,6 +37,9 @@ export function fetchQuiz() {
 export function postAnswer() {
   return function (dispatch) {
     // On successful POST:
+    axios.post(`http://localhost:9000/api/quiz/new`).then(res => {
+      console.log(res);
+    }).catch(err => console.error(err));
     // - Dispatch an action to reset the selected answer state
     // - Dispatch an action to set the server message to state
     // - Dispatch the fetching of the next quiz
