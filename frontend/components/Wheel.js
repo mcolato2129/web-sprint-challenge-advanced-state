@@ -6,12 +6,13 @@ import { connect } from 'react-redux';
 
 function Wheel(props) {
   
-  const { wheelIndex,letter } = props;
+  const { wheel } = props;
 
 
   console.log(props)
 
   const clockWise = () => {
+    console.log('we are in the clockwide function')
    props.moveClockwise();
   }
 
@@ -24,8 +25,8 @@ function Wheel(props) {
     <div id="wrapper">
       <div id="wheel">
         {ids.map(id => {
-          if (id === wheelIndex) {
-            return (<div key={id} className='cog active' style={{ "--i": id }}>{letter}</div>)
+          if (id === wheel) {
+            return (<div key={id} className='cog active' style={{ "--i": id }}>B</div>)
           }
           return (
             <div key={id} className='cog' style={{ "--i": id }}></div>
@@ -48,8 +49,7 @@ function Wheel(props) {
 
 const mapStateToProps = (state) => {
   return {
-    letter: state.wheel.wheelLetter,
-    wheelIndex: state.wheel.wheelIndex
+    wheel: state.wheel
   }
 }
 
