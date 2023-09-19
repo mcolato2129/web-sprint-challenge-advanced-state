@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 
 function Wheel(props) {
-  
+
   const { wheel } = props;
 
 
@@ -13,7 +13,7 @@ function Wheel(props) {
 
   const clockWise = () => {
     console.log('we are in the clockwide function')
-   props.moveClockwise();
+    props.moveClockwise();
   }
 
   const counterClockWise = () => {
@@ -53,4 +53,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { moveClockwise, moveCounterClockwise})(Wheel);
+export default connect(mapStateToProps, { moveClockwise, moveCounterClockwise })(Wheel);

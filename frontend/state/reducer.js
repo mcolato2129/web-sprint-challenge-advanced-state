@@ -1,4 +1,5 @@
 // ❗ You don't need to add extra reducers to achieve MVP
+// reducer 'takes the order' and makes it
 import * as types from './action-types';
 
 
@@ -27,27 +28,32 @@ const wheel = (state = initialWheelState, action) => {
 
 const initialQuizState = null
 function quiz(state = initialQuizState, action) {
-  return state
+  switch(action.type){
+    case types.SET_QUIZ_INTO_STATE:
+    return action.payload;
+    default:
+    return state;
+  }
 }
 
 const initialSelectedAnswerState = null
 function selectedAnswer(state = initialSelectedAnswerState, action) {
-  switch (action.types) {
+  switch (action.type) {
     case types.SET_SELECTED_ANSWER:
-      return {
-        ...state,
-        initialSelectedAnswerState: state
-      }
+      return action.payload
     default:
       return state
   }
 }
 
-const initialMessageState = {
-  message: ''
-}
+const initialMessageState = 'you called me?';
 function infoMessage(state = initialMessageState, action) {
-  return { state: initialMessageState.message };
+  switch(action.type){
+    case types.SET_INFO_MESSAGE:
+      return action.payload
+    default:
+      return state;
+  }
 }
 
 const initialFormState = {
