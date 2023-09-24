@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import * as actionCreators from "../state/action-creators";
+import axios from 'axios';
 
 function Quiz(props) {
   const { st, fetchQuiz, postAnswer } = props;
@@ -12,6 +13,10 @@ function Quiz(props) {
     postAnswer(answer_id)
   }
 
+  axios.get('http://localhost:9000/api/quiz/next').then(res =>{
+    console.log(res.data)
+  })
+  
   return (
     <div id="wrapper">
       {
