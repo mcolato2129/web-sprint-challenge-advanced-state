@@ -7,6 +7,10 @@ function Quiz(props) {
   const { fetchQuiz, postAnswer, selectedAnswer, quiz } = props;
   console.log(props)
 
+  useEffect(()=>{
+    fetchQuiz();
+  },[])
+
   const selectAnswer = (answer_id, quiz_id) => {
     console.log(fetchQuiz)
     fetchQuiz(quiz_id)
@@ -20,9 +24,9 @@ function Quiz(props) {
   return (
     <div id="wrapper">
       {
-        quiz ===
+        quiz 
           // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-          actionCreators.fetchQuiz(quiz) ? (
+           ? (
           <>
             <h2>{fetchQuiz}</h2>
 
