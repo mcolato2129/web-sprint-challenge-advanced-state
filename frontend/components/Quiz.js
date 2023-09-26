@@ -1,38 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import * as actionCreators from "../state/action-creators";
 import axios from 'axios';
 
 function Quiz(props) {
-  const { st, fetchQuiz, postAnswer } = props;
+  const { fetchQuiz, postAnswer, selectedAnswer, quiz } = props;
   console.log(props)
 
-  const selectedAnswer = (answer_id) => {
-    console.log('yes?')
-    fetchQuiz(st)
+  const selectAnswer = (answer_id, quiz_id) => {
+    console.log(fetchQuiz)
+    fetchQuiz(quiz_id)
     postAnswer(answer_id)
   }
 
-  axios.get('http://localhost:9000/api/quiz/next').then(res =>{
-    console.log(res.data)
-  })
-  
+  // axios.get('http://localhost:9000/api/quiz/next').then(res =>{
+  //   console.log(res.data)
+  // })
+
   return (
     <div id="wrapper">
       {
-        // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-        true ? (
+        quiz ===
+          // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
+          actionCreators.fetchQuiz(quiz) ? (
           <>
-            <h2>What is a closure?</h2>
+            <h2>{fetchQuiz}</h2>
 
-            <div id="quizAnswers">
+            <div id="quizAnswers" onClick={selectAnswer}>
               <div className='answer selected'>
-                A function plus its binding
-                <button onClick={selectedAnswer}>Select</button>
+                {postAnswer}
+                <button> {selectedAnswer === answer.answer_id ? `SELECTED` : "Select"} </button>
               </div>
 
               <div className='answer'>
-                Clearly some kind of elephant
+                {postAnswer}
                 <button>Select</button>
               </div>
             </div>

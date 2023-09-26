@@ -30,7 +30,7 @@ const initialQuizState = null
 function quiz(state = initialQuizState, action) {
   switch(action.type){
     case types.SET_QUIZ_INTO_STATE:
-    return action.payload;
+    return initialQuizState = action.payload;
     default:
     return state;
   }
@@ -46,7 +46,7 @@ function selectedAnswer(state = initialSelectedAnswerState, action) {
   }
 }
 
-const initialMessageState = 'you called me?';
+const initialMessageState = '';
 function infoMessage(state = initialMessageState, action) {
   switch(action.type){
     case types.SET_INFO_MESSAGE:
