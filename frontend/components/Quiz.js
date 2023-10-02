@@ -7,16 +7,16 @@ function Quiz(props) {
   const { fetchQuiz, postAnswer, selectedAnswer, quiz } = props;
   console.log(props)
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchQuiz();
-  },[])
+  }, [])
 
-  const selectAnswer = (answer_id, quiz_id) => {
-    console.log(fetchQuiz)
-    fetchQuiz(quiz_id)
+  const selectAnswer = (answer_id, quiz) => {
     postAnswer(answer_id)
   }
-
+  //1. Create handle click that takes in payload fpr select answer to pass in payload
+  //2. onClick in button
+  //3. fix condition in ternary. 'selectedAnswer === answer_id'
   // axios.get('http://localhost:9000/api/quiz/next').then(res =>{
   //   console.log(res.data)
   // })
@@ -24,27 +24,32 @@ function Quiz(props) {
   return (
     <div id="wrapper">
       {
-        quiz 
+        quiz
           // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-           ? (
-          <>
-            <h2>{fetchQuiz}</h2>
+          ? (
+            <>
+              <h2>{quiz.question}</h2>
 
-            <div id="quizAnswers" onClick={selectAnswer}>
-              <div className='answer selected'>
-                {postAnswer}
-                <button> {selectedAnswer === answer.answer_id ? `SELECTED` : "Select"} </button>
+              <div id="quizAnswers" onClick={selectAnswer}>
+                
+                  {quiz.answers.map(answer => {
+                    return <div className='answer selected' key={answer.id}>
+                      {answer.text}
+                    <button > {selectedAnswer === true ? `SELECTED` : "Select"} </button>
+                    </div>
+                  }
+                  )}
+                
+
+                <div className='answer'>
+                  {postAnswer}
+                  <button>Select</button>
+                </div>
               </div>
 
-              <div className='answer'>
-                {postAnswer}
-                <button>Select</button>
-              </div>
-            </div>
-
-            <button id="submitAnswerBtn">Submit answer</button>
-          </>
-        ) : 'Loading next quiz...'
+              <button id="submitAnswerBtn">Submit answer</button>
+            </>
+          ) : 'Loading next quiz...'
       }
     </div>
   )

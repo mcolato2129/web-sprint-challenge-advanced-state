@@ -21,8 +21,8 @@ export function setMessage(message) {
   return { type: types.SET_INFO_MESSAGE, paylaod: message }
 }
 
-export function setQuiz(quiz_id) {
-  return { type: types.SET_QUIZ_INTO_STATE, payload: quiz_id }
+export function setQuiz(quiz) {
+  return { type: types.SET_QUIZ_INTO_STATE, payload: quiz }
 }
 
 export function inputChange(newQuiz) {
@@ -49,7 +49,7 @@ export function fetchQuiz() {
         const errToDisplay = err.response ? err.response.message : err.message
         dispatch(setMessage(errToDisplay))
       })
-      .finally(res => dispatch(setQuiz(res.dataquiz_id)))
+      // .finally(res => dispatch(setQuiz(res.dataquiz_id)))
     // - Dispatch an action to send the obtained quiz to its state
   }
 }
