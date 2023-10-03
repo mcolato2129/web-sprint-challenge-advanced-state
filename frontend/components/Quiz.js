@@ -4,17 +4,17 @@ import * as actionCreators from "../state/action-creators";
 import axios from 'axios';
 
 function Quiz(props) {
-  const { fetchQuiz, postAnswer, selectedAnswer, quiz } = props;
+  const { fetchQuiz, postAnswer, selectAnswer, quiz, selectedAnswer } = props;
   console.log(props)
 
   useEffect(() => {
     fetchQuiz();
   }, [])
 
-  const selectAnswer = (answer_id, quiz) => {
-    postAnswer(answer_id)
+  const a = (answer_id) => {
+    console.log('hello')
   }
-  //1. Create handle click that takes in payload fpr select answer to pass in payload
+  //1. Create handle click that takes in payload for select answer to pass in payload
   //2. onClick in button
   //3. fix condition in ternary. 'selectedAnswer === answer_id'
   // axios.get('http://localhost:9000/api/quiz/next').then(res =>{
@@ -33,9 +33,9 @@ function Quiz(props) {
               <div id="quizAnswers" onClick={selectAnswer}>
                 
                   {quiz.answers.map(answer => {
-                    return <div className='answer selected' key={answer.id}>
+                    return <div className='answer' key={answer.id}>
                       {answer.text}
-                    <button > {selectedAnswer === true ? `SELECTED` : "Select"} </button>
+                    <button onClick={() => selectAnswer(answer.answer_id)}> {selectedAnswer === answer.id? `SELECTED` : "Select"} </button>
                     </div>
                   }
                   )}
@@ -54,7 +54,7 @@ function Quiz(props) {
     </div>
   )
 }
-
+// onClick={a} key={answer.id}
 // const mapStateToProps = (state) => {
 //   return{
 //     selectedAnswer: state.quiz
