@@ -44,7 +44,7 @@ function Quiz(props) {
                 </div>
               </div>
 
-              <button id="submitAnswerBtn" onClick={() => postAnswer(quiz.quiz_id, selectedAnswer)}>Submit answer</button>
+              <button id="submitAnswerBtn" onClick={() => postAnswer({quiz_id: quiz.quiz_id, answer_id: selectedAnswer})}>Submit answer</button>
             </>
           ) : 'Loading next quiz...'
       }

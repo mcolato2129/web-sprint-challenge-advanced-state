@@ -54,21 +54,20 @@ export function fetchQuiz() {
   }
 }
 
-export function postAnswer(quiz_id, selectedAnswer) {
+export function postAnswer(quiz_id, answer_id) {
   return function (dispatch) {
     // On successful POST:
-    axios.post('http://localhost:9000/api/quiz/answer',{
-      'quiz_id': quiz_id,
-      'answer_id': selectedAnswer
-    }).then((res) => {
+    axios.post('http://localhost:9000/api/quiz/answer',{quiz_id, answer_id})
+    .then((res) => {
      console.log(res.data)
-     dispatch(setQuiz(res.data))
+     dispatch(selectAnswer(null));
+     dispatch(setMessage(res.data.message))
     }).catch(err => {
       const errToDisplay = err.response ? err.response.data.message : err.message
       dispatch(setMessage(errToDisplay))
-    }).finally(res => {
-      dispatch(setQuiz(res.data))
-       });
+    }).finally(() => {
+      dispatch(fetchQuiz())
+      });
       
 
     // - Dispatch an action to reset the selected answer state
