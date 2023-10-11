@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import * as actionCreators from "../state/action-creators";
 
 function Message(props) {
-  const { st, infoMessage } = props
+  const { st, infoMessage, postAnswer, quiz } = props
   console.log(st)
 
-  return <div id="message">{infoMessage}</div>
+  return <div id="message">hello</div>
 }
 
 // const mapStateToProps = (state) => {

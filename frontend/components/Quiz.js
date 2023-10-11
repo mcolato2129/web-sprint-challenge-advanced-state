@@ -30,24 +30,21 @@ function Quiz(props) {
             <>
               <h2>{quiz.question}</h2>
 
-              <div id="quizAnswers" onClick={selectAnswer}>
-                
-                  {quiz.answers.map(answer => {
-                    return <div className='answer' key={answer.id}>
-                      {answer.text}
-                    <button onClick={() => selectAnswer(answer.answer_id)}> {selectedAnswer === answer.id? `SELECTED` : "Select"} </button>
-                    </div>
-                  }
-                  )}
-                
+              <div id="quizAnswers" >
+              {/* onClick={selectAnswer} */}
+                <div className={`answer ${selectedAnswer === quiz.answers[0].answer_id ? 'selected' : ''} `} onClick={() => selectAnswer(quiz.answers[0].answer_id)}>
+                  {quiz.answers[0].text} 
+                  <button> {selectedAnswer === quiz.answers[0].answer_id ? `SELECTED` : "Select"} </button>
+                </div>
 
-                <div className='answer'>
-                  {postAnswer}
-                  <button>Select</button>
+
+                <div className={`answer ${selectedAnswer === quiz.answers[1].answers_id ? 'selected' : ''} `} onClick={() => selectAnswer(quiz.answers[1].answer_id)}>
+                  {quiz.answers[1].text}
+                  <button>{selectedAnswer === quiz.answers[1].answer_id ? 'SELECTED' : 'Select'}</button>
                 </div>
               </div>
 
-              <button id="submitAnswerBtn">Submit answer</button>
+              <button id="submitAnswerBtn" onClick={() => postAnswer(quiz.quiz_id, selectedAnswer)}>Submit answer</button>
             </>
           ) : 'Loading next quiz...'
       }
@@ -68,3 +65,10 @@ export default connect(st => st, actionCreators)(Quiz)
 // How can I tell which answer_id is being selected?
 // How do I get the class name "answer select" to switch when the buttons are clicked?
 // What does the submit button need so it to knows which answer is selected?
+
+{/* <div className={`answer${selectedAnswer === quiz.answers[0].answer_id ? ' selected' : ''}`} onClick={() => selectAnswer(quiz.answers[0].answer_id)}>
+                {quiz.answers[0].text}
+                <button>
+                  {selectedAnswer === quiz.answers[0].answer_id ? 'SELECTED' : 'Select'}
+                </button>
+              </div> */}

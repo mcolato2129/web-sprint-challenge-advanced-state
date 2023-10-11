@@ -18,7 +18,7 @@ export function selectAnswer(answer_id) {
 }
 
 export function setMessage(message) {
-  return { type: types.SET_INFO_MESSAGE, paylaod: message }
+  return { type: types.SET_INFO_MESSAGE, payload: message }
 }
 
 export function setQuiz(quiz) {
@@ -46,25 +46,31 @@ export function fetchQuiz() {
         dispatch(setQuiz(res.data));
       })
       .catch(err => {
-        const errToDisplay = err.response ? err.response.message : err.message
+        const errToDisplay = err.response ? err.response.data.messsage : err.message;
         dispatch(setMessage(errToDisplay))
       })
-      // .finally(res => dispatch(setQuiz(res.dataquiz_id)))
+    // 
     // - Dispatch an action to send the obtained quiz to its state
   }
 }
 
-export function postAnswer() {
+export function postAnswer(quiz_id, selectedAnswer) {
   return function (dispatch) {
     // On successful POST:
-    axios.post('http://localhost:9000/api/quiz/answer').then((res) => {
-      console.log(res.data)
-      dispatch(selectAnswer(res.data.answer));
-      dispatch(setMessage(res.data.message)); //<=== ?
+    axios.post('http://localhost:9000/api/quiz/answer',{
+      'quiz_id': quiz_id,
+      'answer_id': selectedAnswer
+    }).then((res) => {
+     console.log(res.data)
+     dispatch(setQuiz(res.data))
     }).catch(err => {
-      const errToDisplay = err.response ? err.response.message : err.message
+      const errToDisplay = err.response ? err.response.data.message : err.message
       dispatch(setMessage(errToDisplay))
-    });
+    }).finally(res => {
+      dispatch(setQuiz(res.data))
+       });
+      
+
     // - Dispatch an action to reset the selected answer state
     // - Dispatch an action to set the server message to state
     // - Dispatch the fetching of the next quiz
@@ -83,6 +89,11 @@ export function postQuiz() {
   }
 }
 // ❗ On promise rejections, use log statements or breakpoints, and put an appropriate error message in state
+
+
+ 
+// dispatch(selectAnswer(res.data.answers));
+//       dispatch(setMessage(res.data.message)); //<=== ?
 
 
 // .catch(err => {
