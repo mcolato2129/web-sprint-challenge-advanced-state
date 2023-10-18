@@ -6,7 +6,7 @@ function Message(props) {
   const { st, infoMessage, postAnswer, quiz } = props
   console.log(st)
 
-  return <div id="message">hello</div>
+  return <div id="message">{infoMessage}</div>
 }
 
 // const mapStateToProps = (state) => {

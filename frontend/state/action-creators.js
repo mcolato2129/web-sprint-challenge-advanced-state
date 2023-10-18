@@ -25,8 +25,8 @@ export function setQuiz(quiz) {
   return { type: types.SET_QUIZ_INTO_STATE, payload: quiz }
 }
 
-export function inputChange(newQuiz) {
-  return { type: types.INPUT_CHANGE, payload: newQuiz }
+export function inputChange(newQuestion, newTrueAnswer, newFalseAnswer) {
+  return { type: types.INPUT_CHANGE, payloadNewQuestion: newQuestion, payloadNewTrueAnswer: newTrueAnswer, payloadNewFalseAnswer: newFalseAnswer}
 }
 
 export function resetForm() {
@@ -75,13 +75,20 @@ export function postAnswer(quiz_id, answer_id) {
     // - Dispatch the fetching of the next quiz
   }
 }
-export function postQuiz() {
+
+
+const initialFormState = {
+  newQuestion: '',
+  newTrueAnswer: '',
+  newFalseAnswer: '',
+}
+export function postQuiz(question_text, true_answer_text, false_answer_text) {
   return function (dispatch) {
     // On successful POST:
-    axios.post(`http://localhost:9000/api/quiz/new`)
+    axios.post(`http://localhost:9000/api/quiz/new`, {question_text, true_answer_text, false_answer_text})
       .then(res => {
-        dispatch(inputChange(newQuiz))
-        dispatch(resetForm())
+        dispatch(inputChange(newQuestion, newTrueAnswer, newFalseAnswer))
+        dispatch(resetForm(initialFormState))
       })
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form
