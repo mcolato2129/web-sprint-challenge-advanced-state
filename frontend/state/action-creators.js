@@ -26,7 +26,12 @@ export function setQuiz(quiz) {
 }
 
 export function inputChange(newQuestion, newTrueAnswer, newFalseAnswer) {
-  return { type: types.INPUT_CHANGE, payloadNewQuestion: newQuestion, payloadNewTrueAnswer: newTrueAnswer, payloadNewFalseAnswer: newFalseAnswer}
+  return { 
+    type: types.INPUT_CHANGE, 
+    payloadNewQuestion: newQuestion, 
+    payloadNewTrueAnswer: newTrueAnswer,
+    payloadNewFalseAnswer: newFalseAnswer
+  }
 }
 
 export function resetForm() {
