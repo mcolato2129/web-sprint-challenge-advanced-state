@@ -79,18 +79,18 @@ export function postAnswer(quiz_id, answer_id) {
 }
 
 
-const initialFormState = {
-  newQuestion: '',
-  newTrueAnswer: '',
-  newFalseAnswer: '',
-}
-export function postQuiz(question_text, true_answer_text, false_answer_text) {
+
+export function postQuiz({newQuestion, newTrueAnswer, newFalseAnswer}) {
   return function (dispatch) {
     // On successful POST:
-    axios.post(`http://localhost:9000/api/quiz/new`, {question_text, true_answer_text, false_answer_text})
+    axios.post(`http://localhost:9000/api/quiz/new`, {
+      question_text: newQuestion, 
+      true_answer_text: newTrueAnswer, 
+      false_answer_text: newFalseAnswer
+    })
       .then(res => {
-        dispatch(inputChange(newQuestion, newTrueAnswer, newFalseAnswer))
-        dispatch(resetForm(initialFormState))
+        dispatch(setMessage(`Congrates: "${res.data.question}" is a great question!`))
+        dispatch(resetForm())
       })
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form

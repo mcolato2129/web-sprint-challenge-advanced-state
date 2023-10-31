@@ -65,11 +65,11 @@ function form(state = initialFormState, action) {
   switch(action.type){
     case types.INPUT_CHANGE:
       return{
-        ...state, newQuestion: action.payload.inputId
+        ...state, [action.payload.inputId]: action.payload.value
         
       }
     case types.RESET_FORM:
-      return state
+      return initialFormState
       default: 
       return state;
   }
