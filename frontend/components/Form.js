@@ -10,9 +10,8 @@ export function Form(props) {
   const onChange = evt => {
     console.log(evt.target.id)
     console.log(evt.target.value)
-    const  value  = evt.target.value
-    const id = evt.target.id
-    inputChange({inputId: id, value })
+    const  { id, value }  = evt.target;
+    inputChange({ inputId: id, value })
   }
 
 
@@ -26,8 +25,10 @@ export function Form(props) {
     <form id="form" onSubmit={onSubmit}>
       <h2>Create New Quiz</h2>
       <input maxLength={50} onChange={onChange} id="newQuestion" placeholder="Enter question" value={form.newQuestion} />
-      <input maxLength={50} onChange={onChange} id="newTrueAnswer" placeholder="Enter true answer" value={form.newTrueAnswer}/>
-      <input maxLength={50} onChange={onChange} id="newFalseAnswer" placeholder="Enter false answer" value={form.newFalseAnswer}/>
+      <input maxLength={50} onChange={onChange} id="newTrueAnswer" placeholder="Enter true answer" 
+      value={form.newTrueAnswer}/>
+      <input maxLength={50} onChange={onChange} id="newFalseAnswer" placeholder="Enter false answer" 
+      value={form.newFalseAnswer}/>
       <button id="submitNewQuizBtn">Submit new quiz</button>
     </form>
   )
