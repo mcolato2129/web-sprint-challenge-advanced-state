@@ -8,8 +8,8 @@ export function Form(props) {
   //   inputChange(newQuestion, newTrueAnswer,newFalseAnswer)
   // }
   const onChange = evt => {
-    console.log(evt.target.id)
-    console.log(evt.target.value)
+    // console.log(evt.target.id)
+    // console.log(evt.target.value)
     const  { id, value }  = evt.target;
     inputChange({ inputId: id, value })
   }
@@ -18,8 +18,14 @@ export function Form(props) {
 
   console.log(form)
   const onSubmit = evt => {
+    console.log(evt)
+    const { newQuestion, newTrueAnswer, newFalseAnswer } = evt.target
     evt.preventDefault()
-    
+    postQuiz({
+      question_text: newQuestion, 
+      true_answer_text: newTrueAnswer, 
+      false_answer_text: newFalseAnswer
+    })
   }
 
   return (

@@ -91,7 +91,9 @@ export function postQuiz({newQuestion, newTrueAnswer, newFalseAnswer}) {
       .then(res => {
         dispatch(setMessage(`Congrates: "${res.data.question}" is a great question!`))
         dispatch(resetForm())
-      })
+      }).catch(err => {
+        const errToDisplay = err.response ? err.response.data.message : err.message
+        dispatch(setMessage(errToDisplay))})
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form
   }
