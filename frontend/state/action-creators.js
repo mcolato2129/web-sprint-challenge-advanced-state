@@ -25,7 +25,7 @@ export function setQuiz(quiz) {
   return { type: types.SET_QUIZ_INTO_STATE, payload: quiz }
 }
 
-export function inputChange( inputId, value) {
+export function inputChange({inputId, value}) {
   return { 
     type: types.INPUT_CHANGE, payload: {inputId, value}
   }
