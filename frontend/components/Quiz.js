@@ -11,9 +11,9 @@ function Quiz(props) {
     fetchQuiz();
   }, [])
 
-  const a = (answer_id) => {
-    console.log('hello')
-  }
+  // const a = (answer_id) => {
+  //   console.log('hello')
+  // }
   //1. Create handle click that takes in payload for select answer to pass in payload
   //2. onClick in button
   //3. fix condition in ternary. 'selectedAnswer === answer_id'

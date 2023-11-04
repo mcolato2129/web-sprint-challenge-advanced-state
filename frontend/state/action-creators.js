@@ -56,15 +56,16 @@ export function fetchQuiz() {
   }
 }
 
-export function postAnswer(quiz_id, answer_id) {
+export function postAnswer({quiz_id, answer_id}) {
   return function (dispatch) {
     // On successful POST:
     axios.post('http://localhost:9000/api/quiz/answer',{quiz_id, answer_id})
     .then((res) => {
-     console.log(res.data)
+     console.log(res.data, 'here 1')
      dispatch(selectAnswer(null));
      dispatch(setMessage(res.data.message))
     }).catch(err => {
+      // console.log(err, 'here 2')
       const errToDisplay = err.response ? err.response.data.message : err.message
       dispatch(setMessage(errToDisplay))
     }).finally(() => {
@@ -80,13 +81,14 @@ export function postAnswer(quiz_id, answer_id) {
 
 
 
-export function postQuiz({newQuestion, newTrueAnswer, newFalseAnswer}) {
+export function postQuiz({question_text, true_answer_text, false_answer_text}) {
+  console.log(question_text, 'here')
   return function (dispatch) {
     // On successful POST:
     axios.post(`http://localhost:9000/api/quiz/new`, {
-      question_text: newQuestion, 
-      true_answer_text: newTrueAnswer, 
-      false_answer_text: newFalseAnswer
+      question_text, 
+      true_answer_text,
+      false_answer_text
     })
       .then(res => {
         dispatch(setMessage(`Congrates: "${res.data.question}" is a great question!`))

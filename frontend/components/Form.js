@@ -18,13 +18,14 @@ export function Form(props) {
 
   console.log(form)
   const onSubmit = evt => {
-    console.log(evt)
-    const { newQuestion, newTrueAnswer, newFalseAnswer } = evt.target
+    // console.log(evt)
+    // const { newQuestion, newTrueAnswer, newFalseAnswer } = evt.target
+    // console.log(evt.target.newFalseAnswer, 'event')
     evt.preventDefault()
     postQuiz({
-      question_text: newQuestion, 
-      true_answer_text: newTrueAnswer, 
-      false_answer_text: newFalseAnswer
+      question_text: form.newQuestion, 
+      true_answer_text: form.newTrueAnswer, 
+      false_answer_text: form.newFalseAnswer
     })
   }
 

@@ -95,6 +95,7 @@ async function getNextQuiz() {
 }
 
 async function postAnswer(payload) {
+  console.log(payload, 'PAYLOAD')
   try {
     const { quiz_id, answer_id } = await answerSchema.validate(payload)
     const question = quizzes.find(q => q.quiz_id === quiz_id)
