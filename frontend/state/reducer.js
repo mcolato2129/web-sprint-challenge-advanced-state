@@ -67,7 +67,6 @@ function form(state = initialFormState, action) {
     case types.INPUT_CHANGE:
       return{
         ...state, [action.payload.inputId]: action.payload.value
-        
       }
     case types.RESET_FORM:
       return initialFormState
