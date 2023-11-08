@@ -29,6 +29,10 @@ export function Form(props) {
     })
   }
 
+  const isDisabled = () => {
+
+  }
+
   return (
     <form id="form" onSubmit={onSubmit}>
       <h2>Create New Quiz</h2>
@@ -37,7 +41,7 @@ export function Form(props) {
       value={form.newTrueAnswer}/>
       <input maxLength={50} onChange={onChange} id="newFalseAnswer" placeholder="Enter false answer" 
       value={form.newFalseAnswer}/>
-      <button id="submitNewQuizBtn">Submit new quiz</button>
+      <button id="submitNewQuizBtn" disabled={isDisabled()}>Submit new quiz</button>
     </form>
   )
 }
