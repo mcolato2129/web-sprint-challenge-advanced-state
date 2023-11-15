@@ -8,9 +8,9 @@ function Quiz(props) {
   console.log(props)
 
   useEffect(() => {
-    fetchQuiz();
+    !quiz && fetchQuiz();
   }, [])
-
+   //^^^
   // const a = (answer_id) => {
   //   console.log('hello')
   // }
