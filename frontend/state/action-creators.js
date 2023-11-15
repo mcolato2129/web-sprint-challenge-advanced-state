@@ -81,14 +81,14 @@ export function postAnswer({quiz_id, answer_id}) {
 
 
 
-export function postQuiz({question_text, true_answer_text, false_answer_text}) {
+export function postQuiz({newQuestion, newTrueAnswer, newFalseAnswer}) {
   console.log(question_text, 'here')
   return function (dispatch) {
     // On successful POST:
     axios.post(`http://localhost:9000/api/quiz/new`, {
-      question_text, 
-      true_answer_text,
-      false_answer_text
+      question_text: newQuestion, 
+      true_answer_text: newTrueAnswer,
+      false_answer_text: newFalseAnswer
     })
       .then(res => {
         dispatch(setMessage(`Congrates: "${res.data.question}" is a great question!`))
