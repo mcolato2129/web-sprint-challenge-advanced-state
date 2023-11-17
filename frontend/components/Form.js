@@ -23,14 +23,21 @@ export function Form(props) {
     // console.log(evt.target.newFalseAnswer, 'event')
     evt.preventDefault()
     postQuiz({
-      question_text: form.newQuestion, 
-      true_answer_text: form.newTrueAnswer, 
-      false_answer_text: form.newFalseAnswer
+       newQuestion: form.newQuestion, 
+       newTrueAnswer: form.newTrueAnswer, 
+       newFalseAnswer: form.newFalseAnswer
     })
   }
 
   const isDisabled = () => {
-    
+    // if(form.newQuestion.trim().length < 1 || form.newTrueAnswer.trim().length < 1 || form.newFalseAnswer.trim().length < 1){
+    //   return true;
+    // } else{
+    //   return false;
+    // }
+
+    return Object.values(form).some((val) => val.trim().length < 1)
+
   }
 
   return (
